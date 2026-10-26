@@ -1,0 +1,195 @@
+{
+  "_comentario": "LA CARTA. Este archivo es el contrato de integracion con Comanda (ver INTEGRACION.md). Los nombres de campo siguen su modelo de datos: categoria/producto/precio/disponible. Ver INTEGRACION.md.",
+
+  "version_catalogo": 1,
+  "actualizado": "2026-10-26",
+  "moneda": "ARS",
+
+  "categorias": [
+    {
+      "id": "entradas",
+      "nombre": "PARA EMPEZAR",
+      "orden": 1,
+      "nota": "Para compartir mientras llega el resto.",
+      "productos": [
+        {
+          "id": "prov-001",
+          "nombre": "Provoleta al horno",
+          "descripcion": "Con orégano, aceite de oliva y pan de campo tostado.",
+          "precio": 9800,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": ["vegetariano"]
+        },
+        {
+          "id": "empa-001",
+          "nombre": "Empanadas de carne (3 u.)",
+          "descripcion": "Cortadas a cuchillo, al horno de barro.",
+          "precio": 8400,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": []
+        },
+        {
+          "id": "burr-001",
+          "nombre": "Burrata con tomates asados",
+          "descripcion": "Albahaca fresca, reducción de balsámico y focaccia.",
+          "precio": 13500,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": ["vegetariano"]
+        },
+        {
+          "id": "rabas-001",
+          "nombre": "Rabas a la provenzal",
+          "descripcion": "Con alioli de limón.",
+          "precio": 14200,
+          "disponible": false,
+          "foto_url": null,
+          "etiquetas": []
+        }
+      ]
+    },
+    {
+      "id": "principales",
+      "nombre": "PRINCIPALES",
+      "orden": 2,
+      "nota": "Todos salen con guarnición a elección.",
+      "productos": [
+        {
+          "id": "ojo-001",
+          "nombre": "Ojo de bife",
+          "descripcion": "400 g, a la parrilla. Pedilo al punto que quieras.",
+          "precio": 24500,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": ["sin gluten"]
+        },
+        {
+          "id": "sorr-001",
+          "nombre": "Sorrentinos de calabaza",
+          "descripcion": "Salsa de manteca y salvia, nuez tostada.",
+          "precio": 18900,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": ["vegetariano"]
+        },
+        {
+          "id": "mila-001",
+          "nombre": "Milanesa napolitana",
+          "descripcion": "De ternera, con jamon, salsa y mozzarella. Papas fritas.",
+          "precio": 19800,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": []
+        },
+        {
+          "id": "salm-001",
+          "nombre": "Salmón rosado grillado",
+          "descripcion": "Puré de coliflor y verdes salteados.",
+          "precio": 27400,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": ["sin gluten"]
+        },
+        {
+          "id": "riso-001",
+          "nombre": "Risotto de hongos",
+          "descripcion": "Portobello, gírgolas y parmesano.",
+          "precio": 19200,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": ["vegetariano", "sin gluten"]
+        }
+      ]
+    },
+    {
+      "id": "postres",
+      "nombre": "POSTRES",
+      "orden": 3,
+      "nota": "",
+      "productos": [
+        {
+          "id": "flan-001",
+          "nombre": "Flan casero con dulce de leche",
+          "descripcion": "Y crema, si queres las dos cosas.",
+          "precio": 7600,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": ["vegetariano"]
+        },
+        {
+          "id": "volc-001",
+          "nombre": "Volcán de chocolate",
+          "descripcion": "Con helado de crema americana.",
+          "precio": 8900,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": ["vegetariano"]
+        },
+        {
+          "id": "tira-001",
+          "nombre": "Tiramisú",
+          "descripcion": "Receta de la casa, con café de verdad.",
+          "precio": 8400,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": ["vegetariano"]
+        }
+      ]
+    },
+    {
+      "id": "bebidas",
+      "nombre": "BEBIDAS",
+      "orden": 4,
+      "nota": "Carta de vinos completa en el salón.",
+      "productos": [
+        {
+          "id": "agua-001",
+          "nombre": "Agua con o sin gas",
+          "descripcion": "500 ml.",
+          "precio": 2800,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": []
+        },
+        {
+          "id": "gase-001",
+          "nombre": "Gaseosa línea Coca-Cola",
+          "descripcion": "",
+          "precio": 3200,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": []
+        },
+        {
+          "id": "cerv-001",
+          "nombre": "Cerveza artesanal pinta",
+          "descripcion": "Golden, IPA o negra. Preguntá por la del día.",
+          "precio": 6500,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": []
+        },
+        {
+          "id": "vino-001",
+          "nombre": "Malbec copa",
+          "descripcion": "Mendoza, cosecha 2023.",
+          "precio": 7200,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": []
+        },
+        {
+          "id": "vino-002",
+          "nombre": "Malbec botella",
+          "descripcion": "750 ml.",
+          "precio": 32000,
+          "disponible": true,
+          "foto_url": null,
+          "etiquetas": []
+        }
+      ]
+    }
+  ]
+}

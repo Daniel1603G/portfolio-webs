@@ -1,0 +1,654 @@
+/* ==========================================================
+   MODELO TATUAJES — hoja de estilo
+   Blanco y negro, Helvetica pesada, titulos gigantes.
+   El unico color configurable es --acento (viene de datos.js).
+   ========================================================== */
+
+:root {
+  --tinta:   #000;
+  --papel:   #fff;
+  --gris:    #8a8a8a;
+  --linea:   #e2e2e2;
+  --hueso:   #f2f2f0;
+  --acento:  #c6ff00;          /* lo pisa datos.js */
+  --borde:   1px solid var(--tinta);
+
+  --sans: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --gutter: clamp(16px, 4vw, 48px);
+  --barra:  52px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--papel);
+  color: var(--tinta);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body.bloqueado { overflow: hidden; height: 100vh; }
+
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* --- etiquetas chiquitas en mayuscula, estilo terminal --- */
+.micro {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================
+   1. INTRO — pantalla de carga
+   ========================================================== */
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #050505;
+  color: #e8e8e8;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: var(--gutter);
+  transition: opacity .7s ease, visibility .7s;
+}
+#intro.fuera { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.intro-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid #1f1f1f;
+  padding-bottom: 12px;
+  color: var(--acento);
+}
+
+/* el logo que late en el centro */
+.intro-centro { display: grid; place-items: center; position: relative; }
+
+.intro-logo {
+  font-size: clamp(56px, 14vw, 170px);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: .85;
+  text-align: center;
+  animation: respirar 2.6s ease-in-out infinite;
+}
+@keyframes respirar {
+  0%, 100% { opacity: .55; transform: scale(.99); }
+  50%      { opacity: 1;   transform: scale(1); }
+}
+
+/* banda de glitch que cruza el logo cada tanto */
+.intro-centro::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  height: 2px;
+  background: var(--acento);
+  opacity: .5;
+  animation: barrido 3.4s linear infinite;
+}
+@keyframes barrido {
+  0%   { top: 10%;  opacity: 0; }
+  12%  { opacity: .55; }
+  88%  { opacity: .55; }
+  100% { top: 90%;  opacity: 0; }
+}
+
+.intro-bot { border-top: 1px solid #1f1f1f; padding-top: 12px; }
+
+.barra-fila {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.barra-track {
+  flex: 1;
+  height: 8px;
+  border: 1px solid #333;
+  overflow: hidden;
+}
+.barra-fill {
+  height: 100%;
+  width: 0%;
+  background: repeating-linear-gradient(90deg,
+    var(--acento) 0 4px, transparent 4px 7px);
+  transition: width .18s linear;
+}
+#pct { min-width: 44px; text-align: right; color: var(--acento); }
+
+.intro-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* boton ENTRAR: aparece recien cuando la barra llega a 100 */
+#entrar {
+  display: block;
+  margin: 0 auto;
+  background: transparent;
+  border: 1px solid var(--acento);
+  color: var(--acento);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .3em;
+  padding: 15px 44px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity .4s ease, transform .4s ease,
+              background .2s, color .2s;
+}
+#entrar.listo { opacity: 1; transform: none; pointer-events: auto; }
+#entrar:hover { background: var(--acento); color: #000; }
+
+/* ==========================================================
+   2. BARRA SUPERIOR
+   ========================================================== */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+  height: var(--barra);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter);
+  background: var(--papel);
+  border-bottom: var(--borde);
+}
+
+.logo { font-weight: 700; font-size: 13px; letter-spacing: .1em; }
+
+.btn-menu, .btn-wsp-top {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  background: var(--tinta);
+  color: var(--papel);
+  border: none;
+  padding: 9px 16px;
+  cursor: pointer;
+}
+.btn-wsp-top { background: var(--acento); color: var(--tinta); font-weight: 700; }
+
+/* --- menu overlay --- */
+#menu {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  background: var(--papel);
+  padding: var(--gutter);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  transform: translateY(-100%);
+  transition: transform .5s cubic-bezier(.76,0,.24,1);
+}
+#menu.abierto { transform: none; }
+
+.menu-top { display: flex; justify-content: flex-end; }
+
+.menu-lista { align-self: center; }
+.menu-lista a {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--linea);
+  font-size: clamp(30px, 7vw, 68px);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  transition: padding-left .25s ease, background .25s ease;
+}
+.menu-lista a:hover { padding-left: 16px; background: var(--acento); }
+.menu-lista .n { font-size: 11px; font-family: var(--mono); color: var(--gris); }
+
+.menu-pie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  color: var(--gris);
+  border-top: var(--borde);
+  padding-top: 14px;
+}
+
+/* ==========================================================
+   3. HERO
+   ========================================================== */
+.hero {
+  margin-top: var(--barra);
+  height: calc(100vh - var(--barra));
+  min-height: 460px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: var(--hueso);
+  overflow: hidden;
+}
+.hero-foto {
+  position: absolute;
+  inset: 0;
+  background: #1a1a1a;
+  display: grid;
+  place-items: center;
+}
+/* la foto va oscurecida: garantiza que el texto blanco de las
+   esquinas se lea, sea cual sea la foto que cargue el local */
+.hero-foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 35%,
+    rgba(0,0,0,.25) 65%, rgba(0,0,0,.6) 100%);
+  pointer-events: none;
+}
+/* el placeholder del hero va oscuro; el del resto queda claro.
+   Sin texto: queda detras del nombre del local y se lee a medias. */
+.hero-foto > .ph {
+  background: repeating-linear-gradient(45deg,
+    #202020 0 10px, #1a1a1a 10px 20px);
+  color: transparent;
+  font-size: 11px;
+}
+
+.hero-logo {
+  position: relative;
+  z-index: 2;
+  color: var(--papel);
+  font-size: clamp(60px, 16vw, 230px);
+  font-weight: 700;
+  letter-spacing: -.05em;
+  line-height: .82;
+  text-align: center;
+  text-shadow: 0 2px 40px rgba(0,0,0,.5);
+}
+
+.hero-fila {
+  position: absolute;
+  z-index: 3;
+  left: var(--gutter);
+  right: var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--papel);
+}
+.hero-fila.arriba { top: 18px; }
+.hero-fila.abajo  { bottom: 18px; }
+.hero-fila .der { text-align: right; }
+
+/* ==========================================================
+   4. INDICE NUMERADO
+   ========================================================== */
+.indice { border-top: var(--borde); }
+
+.indice-fila {
+  display: grid;
+  grid-template-columns: 56px 1fr minmax(0, 300px);
+  align-items: center;
+  gap: var(--gutter);
+  padding: clamp(14px, 2.4vw, 26px) var(--gutter);
+  border-bottom: var(--borde);
+  transition: background .25s ease, color .25s ease;
+}
+.indice-fila:hover { background: var(--tinta); color: var(--papel); }
+.indice-fila:hover .indice-desc { color: #bdbdbd; }
+
+.indice-n { font-family: var(--mono); font-size: 11px; }
+.indice-t {
+  font-size: clamp(34px, 8.5vw, 104px);
+  font-weight: 700;
+  letter-spacing: -.045em;
+  line-height: .92;
+}
+.indice-desc { font-size: 12px; line-height: 1.5; color: var(--gris); text-align: right; }
+.indice-desc .flecha { display: inline-block; margin-left: 6px; }
+
+/* ==========================================================
+   5. SECCIONES — encabezado comun
+   ========================================================== */
+section { border-bottom: var(--borde); scroll-margin-top: var(--barra); }
+
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: clamp(28px, 5vw, 60px) var(--gutter) 18px;
+}
+.sec-titulo {
+  font-size: clamp(30px, 6.5vw, 76px);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: .95;
+}
+.sec-nota { color: var(--gris); max-width: 42ch; font-size: 12px; line-height: 1.6; }
+
+/* --- filtros de estilo --- */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 0 var(--gutter) 22px;
+}
+.filtro {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  padding: 8px 15px;
+  border: var(--borde);
+  background: transparent;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.filtro:hover { background: var(--hueso); }
+.filtro.on { background: var(--tinta); color: var(--papel); }
+
+/* --- grilla de trabajos --- */
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1px;
+  /* fondo claro: si las piezas no llenan la ultima fila, el espacio
+     sobrante se ve blanco y no como un bloque negro cortado */
+  background: var(--papel);
+  border-top: var(--borde);
+}
+.pieza {
+  position: relative;
+  background: var(--hueso);
+  box-shadow: 0 0 0 1px var(--tinta);   /* la linea divisoria */
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.pieza.alto { aspect-ratio: 3 / 5; }
+.pieza.oculta { display: none; }
+.pieza img { transition: transform .5s ease; }
+.pieza:hover img { transform: scale(1.04); }
+
+.pieza-tag {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  background: var(--papel);
+  padding: 5px 9px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .14em;
+}
+
+/* placeholder cuando todavia no hay foto */
+.ph {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(45deg,
+    #e9e9e7 0 10px, #e2e2e0 10px 20px);
+  color: var(--gris);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-align: center;
+  padding: 10px;
+}
+
+/* ==========================================================
+   6. ARTISTAS
+   ========================================================== */
+.artistas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px;
+  /* fondo claro: si el equipo no llena la ultima fila, el espacio
+     sobrante se ve blanco y no como un bloque negro cortado */
+  background: var(--papel);
+  border-top: var(--borde);
+}
+.artista {
+  background: var(--papel);
+  box-shadow: 0 0 0 1px var(--tinta);   /* la linea divisoria */
+}
+.artista-foto { aspect-ratio: 4 / 5; background: var(--hueso); overflow: hidden; }
+.artista-info { padding: 18px var(--gutter) 24px; }
+.artista-rol { color: var(--gris); margin-bottom: 8px; }
+.artista-nombre {
+  font-size: clamp(22px, 3.4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.artista-estilo { font-size: 12px; color: var(--gris); margin-bottom: 14px; }
+.artista-ig { border-bottom: var(--borde); padding-bottom: 2px; }
+.artista-ig:hover { background: var(--acento); }
+
+/* ==========================================================
+   7. PASOS PARA RESERVAR
+   ========================================================== */
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1px;
+  background: var(--tinta);
+  border-top: var(--borde);
+}
+.paso {
+  background: var(--papel);
+  padding: clamp(22px, 3vw, 36px) var(--gutter);
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background .25s, color .25s;
+}
+.paso:hover { background: var(--acento); }
+.paso-n { font-family: var(--mono); font-size: 11px; color: var(--gris); }
+.paso:hover .paso-n, .paso:hover .paso-d { color: var(--tinta); }
+.paso-t { font-size: clamp(19px, 2.6vw, 28px); font-weight: 700; letter-spacing: -.02em; }
+.paso-d { font-size: 12.5px; line-height: 1.6; color: var(--gris); }
+
+/* bloque negro con el CTA grande */
+.cta {
+  background: var(--tinta);
+  color: var(--papel);
+  padding: clamp(36px, 6vw, 80px) var(--gutter);
+  text-align: center;
+}
+.cta-chico { color: var(--acento); margin-bottom: 14px; }
+.cta-grande {
+  font-size: clamp(30px, 6.5vw, 74px);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: .98;
+  margin-bottom: 26px;
+}
+.cta-btn {
+  display: inline-block;
+  background: var(--acento);
+  color: var(--tinta);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .22em;
+  padding: 17px 40px;
+  transition: transform .2s ease;
+}
+.cta-btn:hover { transform: translateY(-2px); }
+
+/* ==========================================================
+   8. CUIDADOS + FAQ
+   ========================================================== */
+.cuidados {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px;
+  background: var(--tinta);
+  border-top: var(--borde);
+}
+.cuidado { background: var(--papel); padding: clamp(22px, 3vw, 36px) var(--gutter); }
+.cuidado-t {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  border-bottom: var(--borde);
+}
+.cuidado li {
+  list-style: none;
+  font-size: 13px;
+  line-height: 1.55;
+  padding: 9px 0 9px 20px;
+  position: relative;
+  border-bottom: 1px solid var(--linea);
+}
+.cuidado li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--gris);
+}
+
+.faq { border-top: var(--borde); }
+.faq-item { border-bottom: 1px solid var(--linea); }
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--sans);
+  font-size: clamp(15px, 2.2vw, 21px);
+  font-weight: 700;
+  letter-spacing: -.01em;
+  padding: 20px var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  transition: background .2s;
+}
+.faq-q:hover { background: var(--hueso); }
+.faq-mas { font-family: var(--mono); font-size: 17px; transition: transform .3s ease; }
+.faq-item.abierto .faq-mas { transform: rotate(45deg); }
+.faq-r {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease;
+}
+.faq-item.abierto .faq-r { max-height: 320px; }
+.faq-r p {
+  padding: 0 var(--gutter) 22px;
+  max-width: 62ch;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--gris);
+}
+
+/* ==========================================================
+   9. VISITANOS + PIE
+   ========================================================== */
+.visita {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--tinta);
+  border-top: var(--borde);
+}
+.visita-col { background: var(--papel); padding: clamp(22px, 3vw, 36px) var(--gutter); }
+.visita-et { color: var(--gris); margin-bottom: 12px; }
+.visita-dato {
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.12;
+  margin-bottom: 6px;
+}
+.visita-sub { font-size: 13px; color: var(--gris); margin-bottom: 16px; }
+.visita-link { border-bottom: var(--borde); padding-bottom: 2px; }
+.visita-link:hover { background: var(--acento); }
+
+.horario {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--linea);
+  font-size: 13px;
+}
+.horario span:last-child { color: var(--gris); }
+
+footer {
+  padding: clamp(28px, 4vw, 48px) var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 14px 28px;
+  color: var(--gris);
+}
+
+/* --- boton flotante de whatsapp --- */
+.wsp-flota {
+  position: fixed;
+  right: var(--gutter);
+  bottom: 20px;
+  z-index: 800;
+  background: var(--tinta);
+  color: var(--papel);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  padding: 15px 24px;
+  border: 1px solid var(--tinta);
+  box-shadow: 5px 5px 0 var(--acento);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.wsp-flota:hover { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--acento); }
+
+/* ==========================================================
+   10. APARICION AL SCROLLEAR
+   ========================================================== */
+.revelar { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.revelar.visto { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .revelar { opacity: 1; transform: none; }
+}
+
+/* ==========================================================
+   11. CELULAR
+   ========================================================== */
+@media (max-width: 760px) {
+  .indice-fila { grid-template-columns: 34px 1fr; }
+  .indice-desc { grid-column: 2; text-align: left; padding-top: 8px; }
+  .btn-wsp-top { display: none; }
+  .hero-fila.arriba { display: none; }
+  .wsp-flota { left: var(--gutter); right: var(--gutter); text-align: center; }
+  footer { flex-direction: column; }
+
+
+  /* la direccion queda tapada por el boton flotante de whatsapp:
+     la subimos por encima de el */
+  .hero-fila.abajo { bottom: 88px; }
+  .hero-fila.abajo .der { display: none; }
+}

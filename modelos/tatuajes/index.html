@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estudio de tatuajes</title>
+<meta name="description" content="Estudio de tatuajes en Buenos Aires. Cita previa, cotización por WhatsApp.">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body class="bloqueado">
+
+<!-- ============ INTRO ============ -->
+<div id="intro">
+  <div class="intro-top micro">
+    <span id="intro-ruta"></span>
+    <span id="intro-ver"></span>
+  </div>
+
+  <div class="intro-centro">
+    <div class="intro-logo" id="intro-logo"></div>
+  </div>
+
+  <div class="intro-bot">
+    <div class="barra-fila micro">
+      <span>CARGANDO</span>
+      <div class="barra-track"><div class="barra-fill" id="fill"></div></div>
+      <span id="pct">0%</span>
+    </div>
+    <div class="intro-meta micro">
+      <span id="intro-estado"></span>
+      <span id="intro-anio"></span>
+    </div>
+    <button id="entrar">[ ENTRAR ]</button>
+  </div>
+</div>
+
+<!-- ============ BARRA ============ -->
+<header>
+  <button class="btn-menu" id="abrir-menu">☰ MENU</button>
+  <a href="#top" class="logo" id="logo-barra"></a>
+  <a class="btn-wsp-top" id="wsp-barra" target="_blank" rel="noopener">RESERVAR</a>
+</header>
+
+<!-- ============ MENU ============ -->
+<nav id="menu">
+  <div class="menu-top">
+    <button class="btn-menu" id="cerrar-menu">CERRAR ✕</button>
+  </div>
+  <div class="menu-lista" id="menu-lista"></div>
+  <div class="menu-pie micro" id="menu-pie"></div>
+</nav>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+    <div class="hero-foto" id="hero-foto"><div class="ph">FOTO DEL ESTUDIO</div></div>
+    <div class="hero-fila arriba micro">
+      <span id="hero-bajada"></span>
+      <span class="der" id="hero-ciudad"></span>
+    </div>
+    <h1 class="hero-logo" id="hero-logo"></h1>
+    <div class="hero-fila abajo micro">
+      <span id="hero-dir"></span>
+      <span class="der">SCROLL ↓</span>
+    </div>
+  </div>
+
+  <!-- ============ INDICE ============ -->
+  <div class="indice" id="indice"></div>
+
+  <!-- ============ TRABAJOS ============ -->
+  <section id="trabajos">
+    <div class="sec-head revelar">
+      <h2 class="sec-titulo">TRABAJOS</h2>
+      <p class="sec-nota">Archivo de piezas hechas en el estudio. Filtrá por estilo para ver lo que te interesa.</p>
+    </div>
+    <div class="filtros" id="filtros"></div>
+    <div class="grilla" id="grilla"></div>
+  </section>
+
+  <!-- ============ ARTISTAS ============ -->
+  <section id="artistas">
+    <div class="sec-head revelar">
+      <h2 class="sec-titulo">ARTISTAS</h2>
+      <p class="sec-nota">Cada artista maneja su propia agenda. Escribinos y te derivamos al que mejor encaje con tu idea.</p>
+    </div>
+    <div class="artistas" id="lista-artistas"></div>
+  </section>
+
+  <!-- ============ RESERVAR ============ -->
+  <section id="reservar">
+    <div class="sec-head revelar">
+      <h2 class="sec-titulo">RESERVAR</h2>
+      <p class="sec-nota">Cuatro pasos, sin vueltas. La cotización no tiene cargo.</p>
+    </div>
+    <div class="pasos" id="pasos"></div>
+    <div class="cta">
+      <p class="cta-chico micro">COTIZACIÓN SIN CARGO</p>
+      <p class="cta-grande">CONTANOS<br>QUÉ TENÉS<br>EN LA CABEZA.</p>
+      <a class="cta-btn" id="cta-wsp" target="_blank" rel="noopener">ESCRIBINOS POR WHATSAPP →</a>
+    </div>
+  </section>
+
+  <!-- ============ CUIDADOS ============ -->
+  <section id="cuidados">
+    <div class="sec-head revelar">
+      <h2 class="sec-titulo">CUIDADOS</h2>
+      <p class="sec-nota">Un tatuaje bien cuidado cicatriza mejor y dura más. Leelo antes de venir.</p>
+    </div>
+    <div class="cuidados" id="lista-cuidados"></div>
+    <div class="faq" id="faq"></div>
+  </section>
+
+  <!-- ============ VISITANOS ============ -->
+  <section id="visitanos">
+    <div class="sec-head revelar">
+      <h2 class="sec-titulo">VISITANOS</h2>
+      <p class="sec-nota">Atendemos con cita previa. Si querés pasar a charlar, avisanos antes.</p>
+    </div>
+    <div class="visita">
+      <div class="visita-col">
+        <p class="visita-et micro">DIRECCIÓN</p>
+        <p class="visita-dato" id="v-dir"></p>
+        <p class="visita-sub" id="v-barrio"></p>
+        <a class="visita-link micro" id="v-mapa" target="_blank" rel="noopener">VER EN GOOGLE MAPS ↗</a>
+      </div>
+      <div class="visita-col">
+        <p class="visita-et micro">HORARIOS</p>
+        <div id="v-horarios"></div>
+      </div>
+      <div class="visita-col">
+        <p class="visita-et micro">CONTACTO</p>
+        <p class="visita-dato" id="v-ig"></p>
+        <p class="visita-sub" id="v-mail"></p>
+        <a class="visita-link micro" id="v-wsp" target="_blank" rel="noopener">ESCRIBIR POR WHATSAPP ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="micro" id="pie"></footer>
+</main>
+
+<a class="wsp-flota" id="wsp-flota" target="_blank" rel="noopener">WHATSAPP →</a>
+
+<script src="datos.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

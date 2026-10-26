@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restaurante</title>
+<meta name="description" content="Carta, horarios y reservas. Restaurante en Buenos Aires.">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<!-- ============ BARRA ============ -->
+<header>
+  <a href="#top" class="marca" id="marca"></a>
+  <nav class="nav-secciones" id="nav-secciones"></nav>
+  <a class="btn-reservar" id="btn-reservar" target="_blank" rel="noopener">Reservar</a>
+</header>
+
+<main id="top">
+
+  <!-- ============ PORTADA ============ -->
+  <div class="portada">
+    <p class="portada-et micro" id="portada-et"></p>
+    <h1 class="portada-nombre" id="portada-nombre"></h1>
+    <p class="portada-bajada" id="portada-bajada"></p>
+
+    <div class="portada-datos">
+      <p class="portada-dato micro" id="pd-dir"></p>
+      <p class="portada-dato micro" id="pd-hoy"></p>
+      <p class="portada-dato micro" id="pd-tel"></p>
+    </div>
+  </div>
+
+  <div class="portada-foto">
+    <div id="portada-foto"></div>
+  </div>
+
+  <!-- ============ CARTA ============ -->
+  <section id="carta">
+    <div class="sec-head revelar">
+      <h2 class="sec-titulo">La carta</h2>
+      <div class="filete"><span>◆</span></div>
+      <p class="sec-nota" id="nota-carta"></p>
+    </div>
+    <div class="filtros" id="filtros"></div>
+    <div id="lista-carta"></div>
+    <p class="carta-pie micro" id="carta-pie"></p>
+  </section>
+
+  <!-- ============ SALON ============ -->
+  <section id="salon">
+    <div class="sec-head revelar">
+      <h2 class="sec-titulo">El salón</h2>
+      <div class="filete"><span>◆</span></div>
+      <p class="sec-nota" id="nota-salon"></p>
+    </div>
+    <div class="salon" id="lista-salon"></div>
+  </section>
+
+  <!-- ============ RESERVAR ============ -->
+  <section id="reservar" class="franja">
+    <div class="sec-head revelar">
+      <h2 class="sec-titulo">Reservar</h2>
+      <div class="filete"><span>◆</span></div>
+      <p class="sec-nota" id="nota-reservar"></p>
+    </div>
+    <div class="pasos" id="pasos"></div>
+    <div class="cta revelar">
+      <p class="cta-grande" id="cta-texto"></p>
+      <a class="cta-btn" id="cta-btn" target="_blank" rel="noopener"></a>
+    </div>
+  </section>
+
+  <!-- ============ VISITANOS ============ -->
+  <section id="visitanos">
+    <div class="sec-head revelar">
+      <h2 class="sec-titulo">Visitanos</h2>
+      <div class="filete"><span>◆</span></div>
+      <p class="sec-nota" id="nota-visitanos"></p>
+    </div>
+
+    <div class="visita revelar">
+      <div class="visita-col">
+        <p class="visita-et micro">Dirección</p>
+        <p class="visita-dato" id="v-dir"></p>
+        <p class="visita-sub" id="v-barrio"></p>
+        <a class="visita-link micro" id="v-mapa" target="_blank" rel="noopener">Ver en el mapa ↗</a>
+      </div>
+      <div class="visita-col">
+        <p class="visita-et micro">Horarios</p>
+        <div id="v-horarios"></div>
+      </div>
+      <div class="visita-col">
+        <p class="visita-et micro">Contacto</p>
+        <p class="visita-dato" id="v-ig"></p>
+        <p class="visita-sub" id="v-mail"></p>
+        <a class="visita-link micro" id="v-wsp" target="_blank" rel="noopener">Escribir por WhatsApp ↗</a>
+      </div>
+    </div>
+
+    <div class="faq" id="faq"></div>
+  </section>
+
+  <footer>
+    <p class="micro" id="pie-nombre"></p>
+    <p class="micro" id="pie-dir"></p>
+  </footer>
+</main>
+
+<a class="reservar-flota" id="reservar-flota" target="_blank" rel="noopener">Reservar una mesa</a>
+
+<script src="datos.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

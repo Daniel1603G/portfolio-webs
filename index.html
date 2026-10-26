@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webs para locales — demos</title>
+<meta name="description" content="Dos modelos de sitio web para comercios: estudio de tatuajes y restaurante. Demos navegables.">
+<style>
+  :root {
+    --tinta: #1a1a1a;
+    --papel: #fafaf8;
+    --gris:  #6e6e6e;
+    --linea: #e0ded8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--papel);
+    color: var(--tinta);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .envoltorio {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: clamp(44px, 9vw, 92px) clamp(20px, 5vw, 40px);
+  }
+
+  header { margin-bottom: clamp(38px, 6vw, 60px); }
+
+  h1 {
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 600;
+    letter-spacing: -.025em;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+
+  .bajada {
+    font-size: clamp(16px, 2.2vw, 18px);
+    color: var(--gris);
+    max-width: 58ch;
+  }
+
+  .demos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 20px;
+    margin-bottom: clamp(40px, 6vw, 64px);
+  }
+
+  .demo {
+    display: block;
+    color: inherit;              /* si no, los titulos salen azules */
+    text-decoration: none;
+    border: 1px solid var(--linea);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .demo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0,0,0,.09);
+  }
+
+  /* la muestra de color de cada demo, para que se vean distintas
+     de un vistazo sin tener que entrar */
+  .demo-tira { height: 92px; display: flex; }
+  .demo-tira span { flex: 1; }
+
+  .demo-cuerpo { padding: 20px 22px 24px; }
+
+  .demo-et {
+    font-size: 11px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 7px;
+  }
+
+  .demo-titulo {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -.015em;
+    margin-bottom: 9px;
+  }
+
+  .demo-desc { font-size: 14.5px; color: var(--gris); margin-bottom: 15px; }
+
+  .demo-ver {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--tinta);
+  }
+
+  .nota {
+    border-top: 1px solid var(--linea);
+    padding-top: 26px;
+    font-size: 14.5px;
+    color: var(--gris);
+  }
+  .nota p + p { margin-top: 12px; }
+  .nota strong { color: var(--tinta); font-weight: 600; }
+  .nota a { color: var(--tinta); }
+
+  code {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: .88em;
+    background: #efeee9;
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --tinta: #ececec;
+      --papel: #141414;
+      --gris:  #9a9a9a;
+      --linea: #2e2e2e;
+    }
+    :root:not([data-theme="light"]) .demo { background: #1c1c1c; }
+    :root:not([data-theme="light"]) code { background: #262626; }
+  }
+  :root[data-theme="dark"] {
+    --tinta: #ececec;
+    --papel: #141414;
+    --gris:  #9a9a9a;
+    --linea: #2e2e2e;
+  }
+  :root[data-theme="dark"] .demo { background: #1c1c1c; }
+  :root[data-theme="dark"] code { background: #262626; }
+</style>
+</head>
+<body>
+
+<div class="envoltorio">
+
+  <header>
+    <h1>Webs para locales</h1>
+    <p class="bajada">
+      Dos modelos de sitio para comercios que hoy solo tienen Instagram.
+      Cada uno se adapta a un local editando un archivo de datos, sin tocar
+      el código.
+    </p>
+  </header>
+
+  <div class="demos">
+
+    <a class="demo" href="demos/estudio-demo/">
+      <div class="demo-tira">
+        <span style="background:#111"></span>
+        <span style="background:#C6FF00"></span>
+        <span style="background:#e8e6e1"></span>
+      </div>
+      <div class="demo-cuerpo">
+        <p class="demo-et">Estudio de tatuajes</p>
+        <p class="demo-titulo">Negro Hueso</p>
+        <p class="demo-desc">
+          Galería filtrable por estilo, equipo, pasos para reservar y
+          pantalla de carga. Las imágenes son patrones generados por código.
+        </p>
+        <p class="demo-ver">Ver la demo →</p>
+      </div>
+    </a>
+
+    <a class="demo" href="demos/resto-demo/">
+      <div class="demo-tira">
+        <span style="background:#f5f0e6"></span>
+        <span style="background:#9A3412"></span>
+        <span style="background:#efe8da"></span>
+      </div>
+      <div class="demo-cuerpo">
+        <p class="demo-et">Restaurante</p>
+        <p class="demo-titulo">La Esquina</p>
+        <p class="demo-desc">
+          Carta de bistró con precios unidos por puntos guía, filtros por
+          categoría y dieta, y platos agotados marcados. La carta sale de
+          un JSON aparte.
+        </p>
+        <p class="demo-ver">Ver la demo →</p>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="nota">
+    <p>
+      <strong>Los dos locales son ficticios.</strong> Nombres, direcciones,
+      teléfonos y fotos son de ejemplo. Las imágenes no son fotos: son
+      patrones geométricos dibujados por código
+      (<code>generar-fotos.js</code>).
+    </p>
+    <p>
+      Sin frameworks ni build: HTML, CSS y JavaScript. Para adaptar un
+      modelo a un local se edita <code>datos.js</code>; en el de
+      restaurantes, la carta vive aparte en <code>carta.json</code> para
+      poder enchufarla después a un sistema de gestión.
+    </p>
+    <p>
+      El código está en
+      <a href="https://github.com/Daniel1603G/portfolio-webs">GitHub</a>.
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
