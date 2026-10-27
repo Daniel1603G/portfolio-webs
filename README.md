@@ -86,7 +86,11 @@ sin stock). Está documentado en
 ## Detalles que vale la pena mirar
 
 - **El plato agotado no desaparece.** Se ve apagado con un cartelito
-  "Hoy no": el cliente se entera antes de sentarse.
+  "Hoy no": el cliente se entera antes de sentarse. Si tiene foto, la
+  foto se apaga con él.
+- **Las fotos son opcionales, plato por plato.** La demo tiene 9 de 17
+  a propósito: un local rara vez fotografía la carta entera, y la fila
+  sin foto no puede quedar corrida.
 - **Los filtros se arman solos** a partir de los datos. Si ningún plato
   tiene "sin gluten", ese filtro no aparece.
 - **Los nombres largos nunca se cortan.** En una carta el cliente tiene

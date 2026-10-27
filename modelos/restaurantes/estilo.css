@@ -293,6 +293,34 @@ section {
   padding: 15px 0;
   border-bottom: 1px dotted var(--linea);
 }
+
+/* --- plato con foto ---
+   La miniatura va a la izquierda y es chica a proposito: esto es
+   una carta, no un catalogo. Los platos sin foto no se enteran. */
+.plato.con-foto {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.plato-foto {
+  width: 92px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--papel-2);
+}
+.plato-foto img {
+  transition: transform .4s ease;
+}
+.plato.con-foto:hover .plato-foto img { transform: scale(1.05); }
+
+/* la foto de un plato agotado se apaga igual que el texto */
+.plato.agotado .plato-foto { opacity: .4; }
+
+/* el texto necesita min-width 0 o los puntos guia desbordan
+   la columna en vez de achicarse */
+.plato-txt { min-width: 0; }
 .plato:last-child { border-bottom: none; }
 .plato.oculto { display: none; }
 
@@ -625,6 +653,10 @@ footer p + p { margin-top: 7px; }
   /* en pantalla angosta el nombre puede ocupar dos lineas; los
      puntos guia se achican para dejarle lugar */
   .plato-puntos { min-width: 10px; }
+
+  /* la miniatura se achica: en 375px, 78px se comen la fila */
+  .plato.con-foto { grid-template-columns: 62px 1fr; gap: 13px; }
+  .plato-foto { width: 62px; }
 
   /* el boton flotante tapa el final de la pagina y tambien la
      ultima fila de filtros cuando quedan al pie de la pantalla */

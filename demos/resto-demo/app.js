@@ -195,9 +195,17 @@ async function carta() {
 
 function plato(p, catId) {
   const tags = p.etiquetas || [];
+  // La miniatura solo aparece si ese plato tiene foto. Un local rara
+  // vez fotografia la carta entera, y la fila sin foto no puede
+  // quedar corrida: por eso la clase va en el contenedor.
+  const conFoto = Boolean(p.foto_url);
   return `
-    <div class="plato revelar${p.disponible ? "" : " agotado"}"
+    <div class="plato revelar${p.disponible ? "" : " agotado"}${conFoto ? " con-foto" : ""}"
          data-cat="${esc(catId)}" data-tags="${esc(tags.join("|"))}">
+      ${conFoto ? `<div class="plato-foto">
+        <img src="${esc(p.foto_url)}" alt="${esc(p.nombre)}" loading="lazy">
+      </div>` : ""}
+      <div class="plato-txt">
       <div class="plato-linea">
         <span class="plato-nombre">${esc(p.nombre)}</span>
         ${p.disponible ? "" : `<span class="chip-agotado">Hoy no</span>`}
@@ -207,6 +215,7 @@ function plato(p, catId) {
       ${p.descripcion ? `<p class="plato-desc">${esc(p.descripcion)}</p>` : ""}
       ${tags.length ? `<p class="plato-tags">${tags.map((t) =>
         `<span class="plato-tag">${esc(t)}</span>`).join("")}</p>` : ""}
+      </div>
     </div>`;
 }
 

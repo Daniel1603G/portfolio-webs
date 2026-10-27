@@ -74,10 +74,29 @@ La carta va incrustada porque en la página publicada no hay un
 
 ---
 
+### Fotos de los platos
+
+Cada producto puede llevar `foto_url`. Si lo tiene, aparece una
+miniatura cuadrada a la izquierda del plato.
+
+**No hace falta que todos tengan foto.** Un local rara vez fotografía
+la carta entera. Los platos sin foto quedan alineados igual, sin hueco:
+la demo tiene 9 de 17 justamente para mostrar cómo se ve mezclado.
+
+```json
+"foto_url": "fotos/ojo-001.svg"
+```
+
+La foto de un plato agotado se apaga junto con el texto.
+
+**Qué foto conviene:** cuadrada, el plato centrado, vista desde arriba.
+Se recorta con `object-fit: cover`, así que lo que toca el borde se
+pierde. Si el local manda fotos de mesa entera, recortalas antes.
+
+---
+
 ## Lo que falta
 
-- **Fotos de los platos.** `foto_url` está en el JSON y no se usa
-  todavía. Si un local tiene fotos buenas, conviene mostrarlas.
 - **Carta de vinos aparte.** Los restaurantes con bodega grande la
   quieren separada.
 - **Menú del día.** Lo piden los que tienen almuerzo ejecutivo.
